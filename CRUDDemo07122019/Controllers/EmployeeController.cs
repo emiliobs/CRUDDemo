@@ -27,7 +27,7 @@ namespace CRUDDemo07122019.Controllers
    
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind] Employee employee)
+        public IActionResult Create(Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -38,6 +38,23 @@ namespace CRUDDemo07122019.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employee = employeeDAL.GetEmployeeById(id);
+            if (employee == null)
+            {
+                NotFound();
+            }
+
+            return View(employee);
+        }
     
     }
 

@@ -99,7 +99,7 @@ namespace CRUDDemo07122019.Models
         }
 
         //Get Employye By ID
-        public Employee GetEmployeeById(int id)
+        public Employee GetEmployeeById(int? id)
         {
 
             var employee = new Employee();
