@@ -20,6 +20,6 @@ namespace CRUDDemo07122019.Models
         public string Company { get; set; }
 
         [Required]
-        public string department { get; set; }
+        public string Department { get; set; }
     }
 }
