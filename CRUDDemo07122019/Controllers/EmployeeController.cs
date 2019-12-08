@@ -94,6 +94,39 @@ namespace CRUDDemo07122019.Controllers
             return View(employee);
         }
 
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var employee = employeeDAL.GetEmployeeById(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult ConfirmDelete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            employeeDAL.DeleteEmployee(id);
+
+            return RedirectToAction("Index");
+
+        }
+
     }
 
    
