@@ -55,7 +55,45 @@ namespace CRUDDemo07122019.Controllers
 
             return View(employee);
         }
-    
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int? id, Employee employee)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+         
+
+            if (ModelState.IsValid)
+            {
+                employeeDAL.UpdateEmployee(employee);
+
+                return RedirectToAction("Index");
+            }
+            return View(employee);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+
+            }
+
+            var employee = employeeDAL.GetEmployeeById(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return View(employee);
+        }
+
     }
 
    
